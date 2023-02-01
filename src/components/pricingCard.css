@@ -1,0 +1,65 @@
+.pricing {
+  /* border: 1px solid crimson; */
+  width: 100%;
+  padding: 6rem 1rem;
+  background-color: #000;
+}
+
+.cardContainer {
+  /* border: 1px solid crimson; */
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.card {
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem;
+}
+
+.card:hover {
+  background-color: #141414;
+  cursor: pointer;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.card p {
+  padding: 10px 0;
+  /* taki jo card me likha hai spac aajaye */
+}
+
+.bar {
+  border-bottom: 1px solid #eee;
+  width: 10%;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.btc {
+  font-size: 4rem;
+  font-weight: 600;
+  padding: 1rem 0;
+}
+
+.card .btn {
+  display: block;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+@media all and (max-width: 740px) {
+  .cardContainer {
+    max-width: 90%;
+    margin: auto;
+    grid-template-columns: 1fr;
+    /* ise 1fr ke 3 card 1 row me aajege */
+  }
+}

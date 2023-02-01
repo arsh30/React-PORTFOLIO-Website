@@ -1,0 +1,113 @@
+import "./heroimgStyles.css";
+import React from "react";
+import IntroImg from "../assets/intro-bg.jpg";
+import { Link } from "react-router-dom";
+
+const HeroImg = () => {
+  return (
+    <div className="heroSection">
+      <div className="mask">
+        <img src={IntroImg} className="intro-img" alt="introImg" />
+      </div>
+
+      <div className="content">
+        <p>HI, I'M A FREELANCER.</p>
+        <h1>React Developer</h1>
+        <div>
+          {/* Link because button hai uspr click page change hora hai */}
+          <Link to="/project" className="btn">PROJECTS</Link>
+          <Link to="/contact" className="btn btn-light">CONTACT</Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+---------------------------------------------------------------------
+
+CSS -> 
+/* 
+1) 1st we have to target background Img 
+
+
+*/
+.mask {
+  /* border: 2px dotted orangered; */
+  height: 100%;
+  width: 100%;
+  position: relative;
+  /* Doubt -> ye dena isliye neccesary hai because agr ye nahi dete toh up se aari thi
+  img*/
+}
+
+.intro-img {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  /* Object fit : cover isliye di -> because this  property is used to specify how an 
+  <img> should be resized to fit its container. 
+  Eg: original picture ki dimension 400px 300px hai , but agr hum khud apne tarike se 
+  denge toh uski aspect ratio khrab hojegi, means image jitni aa paye utni hi aayegi aur 
+  nahi aayegi
+
+  If we use object-fit: cover; the image keeps its aspect ratio and fills the given 
+  dimension. The image will be clipped to fit:
+  means agr hum ye cover denge toh jitna humne size diya usme pura cover krlegi
+  */
+}
+
+/* NOW CREATE BLACK OVERLAY ON THIS IMAGE, MEANS IMAGE KE UPR AGR KUCH LIKHE TOH VO 
+DIKHE */
+
+.mask::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.heroSection {
+  border: 1px solid crimson;
+  height: 100%;
+  width: 100%;
+}
+
+.heroSection .content {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  text-align: center;
+}
+
+.heroSection .content h1 {
+  font-size: 4rem;
+  padding: 0.6rem 0 1.5rem;
+}
+
+.heroSection .content p {
+  font-size: 1.4rem;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.content .btn {
+  margin: 1rem 0.2rem;
+}
+
+@media all and (max-width: 640px) {
+  .heroSection .content h1 {
+    font-size: 3rem;
+  }
+
+  .heroSection .content p {
+    font-size: 1.3rem;
+  }
+}

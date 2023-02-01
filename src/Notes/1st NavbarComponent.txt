@@ -1,0 +1,179 @@
+-> import navbar.js and NavbarStyle.css into Home.js PAGE 
+
+-> 1st Begining -> Navbar.js 
+
+
+import "./navbarStyle.css";
+const Navbar = () => {
+  return (
+    <nav className="header">
+      <Link to="/">
+        <h1>Portfolio</h1>
+      </Link>
+
+      {/* Now creat NAV LINKS WHICH IS INSIDE Unorder list */}
+    
+      <ul>
+        <li><Link to="/">Home</Link></li> 
+        
+        // CHECK KRO KI LINK PR CLICK KRNE SE JO ROUTE DIYA USPR REDIRECT HORE HAI
+        //  YA NAHI
+        // UL LI -> BLOCK LEVEL ELEMENTS
+        
+        <li><Link to="/project">Projects</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+      </ul>
+    </nav>
+  );
+};
+
+
+-> 1ST BEGINING OF STYLING NOW STYLING THESE NAVLINK -> 
+
+-------------------------------------- FINAL CODE ------------------------------
+
+Navbar.js -> 
+
+import { FaBars, FaTimes } from "react-icons/fa";
+
+const Navbar = () => {
+  const [click, setClick] = useState(false);
+  const handleClick = () => {
+    setClick(!click);
+  }
+  return (
+    <nav className="header">
+      <Link to="/">
+        <h1>Portfolio</h1>
+      </Link>
+
+      {/* Now creat NAV LINKS WHICH IS INSIDE Unorder list */}
+      <ul className={click ? "nav-menu active" : "nav-menu" } >
+      
+      // YEH 2 CLASSES DI TAKI JB TRUE HOGA TOH OPEN HOJEGA MENU 
+      // FALSE PR CLOSE HOJEGA BY DEFAULT HMNE LEFT SE 0 KRI HAI
+      // POSITION AND ACTIVE CLASS KE ANDR 100 KRI HAI  
+
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/project">Projects</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+      </ul>
+
+      <div className="hamburger" onClick={handleClick}>
+        {
+          click ?  (<FaTimes size={20} style={{ color: 'white' }} />)  :
+            (<FaBars size={20} style={{ color: 'white' }} />) 
+        }
+        {/* <FaBars size={20} style={{color:'white' }} /> */}
+        {/* <FaTimes size={20} style={{color:'white' }} /> */}
+      </div>
+    </nav>
+  );
+};
+// initally menu is hidden for small devices but agr uspr koi click krta hai
+// initially hamrburger will be hidden agr hamburger menu pr click krta hai toh hi dikhna
+// chaiye, so we use state hook taki toggle kar ske icon ki state ko
+
+// so -> hamburger menu class pr click krege toh handleClick function run krega 
+// udr toggle karre hai, click ko bydefault false hai means cross dikhana hai
+
+export default Navbar;
+
+-----------------------------------------------------------------------------------
+
+CSS -> 
+
+.header {
+  /* portfolio logo and nav-menu -> 1 column me hai, inko 1 row me krna hai */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px dotted green;
+}
+
+.nav-menu {
+  border: 1px solid red;
+  display: flex;
+}
+
+.nav-menu li {
+  padding: 0 1rem;
+}
+
+.nav-menu li a {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hamburger {
+  /* because we want ki jo hamburger hai vo small devices bdi screen me na dikhe */
+  display: none;
+}
+
+/* DO GLOBAL CSS IN INDEX.JS*/
+
+/* MAKING RESPONSIVE USING MEDIA QUERY */
+
+@media all and (max-width: 1040px) {
+  .nav-menu {
+    /* large devices me 1 row me aare hai but we want ki small devices me 1 row me aye
+       so pehle humne display flex use krliya inside this, so idr nahi Use krege
+       
+       - idr direction change krdege
+      */
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Parent ka ie h1 jo uske baad hogi vo sari cover krlega*/
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.841);
+
+    /* NOW UPR PROPERTIES DENE SE HMARY LOGO BHI CHANGE HORA USKO SBSE UPR HI RAKHNA 
+    HAI, BSS HM CHAHE HAI KI NAV-LINKS NICHE WALI ROW ME AAJAYE 
+    SO WE USED POSITION ABSOLUTE
+    */
+    position: absolute;
+    top: 0;
+    left: -100%; /*initial isko 0 rakha tha taki center me hoje */
+    /* IMP -> idr left menu -100 denge toh left side hojega menu-links jo hai 
+    so, - 100% isse puri menu hidden hojega left side move hojega ,
+
+    so iske liye active class denge, ul pr class add krege 
+    click ? navmenu active : nav-menu
+    */
+
+    z-index: -3;
+    /* Zindex iska kam kra kyuki hmko navbar ke andr jo logo tha uska z index sbse jyda 
+    rakhna tha taki vo Logo sabse upr aajaye */
+    
+    transition: all 0.5s;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    /* agr by default active class hai toh sare link show krdo 
+    
+    */
+  }
+
+  .nav-menu li {
+    padding: 1rem 0;
+  }
+
+  .nav-menu li {
+    /* Increase font size of anchor tag */
+    font-size: 2rem;
+  }
+
+  /* MAKING HAMBURGER MENU -> Agr koi hamburger pr click krta hai toh hi visible ho 
+  so for that -> Go in Navbar.js
+  */
+
+  .hamburger {
+    display: initial;
+  }
+}

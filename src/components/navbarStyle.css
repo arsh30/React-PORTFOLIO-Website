@@ -1,0 +1,102 @@
+.header {
+  /* portfolio logo and nav-menu -> 1 column me hai, inko 1 row me krna hai */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* border: 1px dotted green; */
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  z-index: 99;
+}
+
+.header-bg {
+  /* Ye isliye di taki ham chahte hai, jb scroll kre toh navbar black hojaye */
+  background-color: rgba(0, 0, 0, 0.85);
+  transition: all 0.5s;
+}
+
+.nav-menu {
+  /* border: 1px solid red; */
+  display: flex;
+}
+
+.nav-menu li {
+  padding: 0 1rem;
+}
+
+.nav-menu li a {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hamburger {
+  /* because we want ki jo hamburger hai vo small devices bdi screen me na dikhe */
+  display: none;
+}
+
+/* DO GLOBAL CSS IN INDEX.JS*/
+
+/* MAKING RESPONSIVE USING MEDIA QUERY */
+
+@media all and (max-width: 1040px) {
+  .nav-menu {
+    /* large devices me 1 row me aare hai but we want ki small devices me 1 row me aye
+       so pehle humne display flex use krliya inside this, so idr nahi Use krege
+       
+       - idr direction change krdege
+      */
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Parent ka ie h1 jo uske baad hogi vo sari cover krlega*/
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.841);
+
+    /* NOW UPR PROPERTIES DENE SE HMARY LOGO BHI CHANGE HORA USKO SBSE UPR HI RAKHNA 
+    HAI, BSS HM CHAHE HAI KI NAV-LINKS NICHE WALI ROW ME AAJAYE 
+    SO WE USED POSITION ABSOLUTE
+    */
+    position: absolute;
+    top: 0;
+    left: -100%; /*initial isko 0 rakha tha taki center me hoje */
+    /* IMP -> idr left menu -100 denge toh left side hojega menu-links jo hai 
+    so, - 100% isse puri menu hidden hojega left side move hojega ,
+
+    so iske liye active class denge, ul pr class add krege 
+    click ? navmenu active : nav-menu
+    */
+
+    z-index: -3;
+    /* Zindex iska kam kra kyuki hmko navbar ke andr jo logo tha uska z index sbse jyda 
+    rakhna tha taki vo Logo sabse upr aajaye */
+
+    transition: all 0.5s;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    /* agr by default active class hai toh sare link show krdo 
+    
+    */
+  }
+
+  .nav-menu li {
+    padding: 1rem 0;
+  }
+
+  .nav-menu li {
+    /* Increase font size of anchor tag */
+    font-size: 2rem;
+  }
+
+  /* MAKING HAMBURGER MENU -> Agr koi hamburger pr click krta hai toh hi visible ho 
+  so for that -> Go in Navbar.js
+  */
+
+  .hamburger {
+    display: initial;
+  }
+}

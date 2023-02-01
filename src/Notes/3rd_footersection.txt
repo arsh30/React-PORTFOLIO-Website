@@ -1,0 +1,142 @@
+import "./footerstyles.css";
+
+import React from "react";
+import {
+  FaHome,
+  FaPhone,
+  FaMailBulk,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa";
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="left">
+          <div className="location">
+            <FaHome size={20} style={{ color: "#fff", marginRight: "2rem" }} />
+            <div>
+              <p>123 Housing Society</p>
+              <p>Bangladesh.</p>
+            </div>
+          </div>
+
+          <div className="phone">
+            <h4>
+              <FaPhone
+                size={20}
+                style={{ color: "#fff", marginRight: "2rem" }}
+              />
+              1-2323-343-23
+            </h4>
+          </div>
+
+          <div className="email">
+            <h4>
+              <FaMailBulk
+                size={20}
+                style={{ color: "#fff", marginRight: "2rem" }}
+              />
+              info@gmail.com
+            </h4>
+          </div>
+        </div>
+        <div className="right">
+          <h4>About the company.</h4>
+          <p>This is me Arshdeep Singh. I'm making React Js Website</p>
+
+          <div className="social">
+            <FaFacebook
+              size={20}
+              style={{ color: "#fff", marginRight: "1rem" }}
+            />
+
+            <FaTwitter
+              size={20}
+              style={{ color: "#fff", marginRight: "1rem" }}
+            />
+
+            <FaLinkedin
+              size={20}
+              style={{ color: "#fff", marginRight: "1rem" }}
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+/*
+In footer -> we have 2 different parts 
+
+*/
+
+export default Footer;
+----------------------------------------------------------------
+
+.footer {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: rgba(19, 19, 19, 0.8);
+}
+
+/* 1:15min */
+.footer-container {
+  /* border: 1px solid crimson; */
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+
+.left {
+  /* border: 1px solid orange; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.location {
+  /* border: 1px solid orange; */
+  display: flex;
+  margin-bottom: 0.8rem;
+}
+
+.location p {
+  line-height: 30px;
+}
+
+.right {
+  /* border: 1px solid orange; */
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.social {
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  padding-bottom: 0.7rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+@media all and (max-width: 640px) {
+  .footer-container {
+    /* border: 1px solid crimson; */
+    grid-template-columns: 1fr;
+  }
+}
